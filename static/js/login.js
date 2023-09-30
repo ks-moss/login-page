@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value;
 
         if(username.length == 0){
-            document.querySelector("#notification-login").textContent = `Username or Email Cannot Be Empty`;
+            document.querySelector("#notification-login").innerHTML = `<span style="color: red;">Username or Email Cannot Be Empty</span>`;
         }
         else if(password.length == 0){
-            document.querySelector("#notification-login").textContent = `Password Cannot Be Empty`;
+            document.querySelector("#notification-login").innerHTML = `<span style="color: red;">Password Cannot Be Empty</span>`;
         }
         else {
 
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
                 else{
-                    document.querySelector("#notification-login").textContent = `${response}`;
+                    document.querySelector("#notification-login").innerHTML = `<span style="color: red;">${response}</span>`;
                 }
                     
             });

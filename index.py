@@ -94,6 +94,6 @@ if __name__ == '__main__':
 
 
 # To execute the file
-# gunicorn -c gunicorn_config.py main:app
+# python -m index
 # lsof -i :5000
 # kill <pid>

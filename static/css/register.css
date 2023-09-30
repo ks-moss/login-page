@@ -55,6 +55,10 @@ body {
     width: 100%;
 }
 
+#notification-create-account {
+    color: red;
+}
+
 
 
 

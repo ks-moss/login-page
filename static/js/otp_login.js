@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const USER_OTP = document.getElementById("otpcode").value;
 
             if(USER_OTP == ""){
-                document.querySelector("#notification-otp-login").textContent = `OTP code cannot be empty`;
+                document.querySelector("#notification-otp-login").innerHTML = `<span style="color: red;">OTP code cannot be empty</span>`;
             } else{
 
                 const OTPs = {
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if(response == "True"){
                         openProfilePage()
                     } else{
-                        document.querySelector("#notification-otp-login").textContent = `Incorrect OTP code, please try again`;
+                        document.querySelector("#notification-otp-login").innerHTML = `<span style="color: red;">Incorrect OTP code, please try again</span>`;
                     }
     
     

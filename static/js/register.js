@@ -25,16 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         HASH_OTP_CODE = response;
                         document.querySelector("#notification-email").textContent = `OTP sent successfully to ${EMAIL}`;
                     } else{
-                        document.querySelector("#notification-email").textContent = `This Email is already exist`;
+                        document.querySelector("#notification-email").innerHTML = `<span style="color: red;">This Email is already exist</span>`;
                     }
     
                 });
     
             } else{
-                document.querySelector("#notification-email").textContent = `Email Has Been Verified`;
+                document.querySelector("#notification-email").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
             }
         } else {
-            document.querySelector("#notification-email").textContent = `Email Cannot Be Empty`;
+            document.querySelector("#notification-email").innerHTML = `<span style="color: red;">Email Cannot Be Empty</span>`
         }
         
         
@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                     if(response == "True"){
                         OTP_EMAIL_VERIFICATTION = true;
-                        document.querySelector("#notification-otp").textContent = `Email Has Been Verified`;
+                        document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
                     } else{
-                        document.querySelector("#notification-otp").textContent = `Incorrect OTP, Please Try Again`;
+                        document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">Incorrect OTP, Please Try Again</span>`;
                     }
 
 
@@ -70,11 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
             } else{
-                document.querySelector("#notification-otp").textContent = `OTP Cannot Be Empty`;
+                document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP Cannot Be Empty</span>`;
             }
 
         } else{
-            document.querySelector("#notification-otp").textContent = `Email Has Been Verified`;
+            document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
         }
                 
         
@@ -113,38 +113,58 @@ document.addEventListener("DOMContentLoaded", function () {
         const FULL_ADDRESS = `${ADDRESS},${apartmentPart}${CITY},${STATE_PROVINCE},${ZIP_CODE},${COUNTRY}`;
 
 
+        let notification_message = "";
+        let found_empty = false;
+
         if(FIRSTNAME.length == 0){
-            document.querySelector("#notification-create-account").textContent = `First Name Cannot Be Empty`;
+            found_empty = true;
+            notification_message = notification_message + "First Name Cannot Be Empty." + "<br>"
         }
-        else if(LASTNAME.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Last Name Cannot Be Empty`;
+        if(LASTNAME.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Last Name Cannot Be Empty." + "<br>"
         }
-        else if(USERNAME.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Username Cannot Be Empty`;
+        if(USERNAME.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Username Cannot Be Empty." + "<br>"
         }
-        else if(PASSWORD.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Password Cannot Be Empty`;
+        if(PASSWORD.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Password Cannot Be Empty." + "<br>"
         }
-        else if(ADDRESS.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Address Cannot Be Empty`;
+        if(ADDRESS.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Address Cannot Be Empty." + "<br>"
         }
-        else if(CITY.length == 0){
-            document.querySelector("#notification-create-account").textContent = `City Cannot Be Empty`;
+        if(CITY.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "City Cannot Be Empty." + "<br>"
         }
-        else if(STATE_PROVINCE.length == 0){
-            document.querySelector("#notification-create-account").textContent = `State or Province Cannot Be Empty`;
+        if(STATE_PROVINCE.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "State Cannot Be Empty." + "<br>"
         }
-        else if(ZIP_CODE.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Zip code Cannot Be Empty`;
+        if(ZIP_CODE.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Zip Code Cannot Be Empty." + "<br>"
         }
-        else if(COUNTRY.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Country Cannot Be Empty`;
+        if(COUNTRY.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Country Cannot Be Empty." + "<br>"
         }
-        else if(PHONE.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Phone Number Cannot Be Empty`;
+        if(PHONE.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Phone Number Cannot Be Empty." + "<br>"
         }
-        else if(EMAIL.length == 0){
-            document.querySelector("#notification-create-account").textContent = `Email Cannot Be Empty`;
+        if(EMAIL.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Email Cannot Be Empty." + "<br>"
+        }
+
+
+
+        if(found_empty == true){
+            document.querySelector("#notification-create-account").innerHTML = `${notification_message}`;
         }
         else {
 

@@ -24,6 +24,6 @@ errorlog = "-"   # Log to stdout by default
 
 
 # To execute the file
-# gunicorn -c gunicorn_config.py application:app
+# gunicorn -c gunicorn_config.py index:app
 # lsof -i :5000
 # kill <pid>
