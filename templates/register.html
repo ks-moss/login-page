@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+
+    <link rel="stylesheet" href="static/css/register.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+<body>
+
+  <div class="body-container">
+
+
+    <div class="sign-in">
+        <label class="">REGISTER</label><br>
+
+        <div class="login-label">
+
+            <label class="">* FIRSTNAME</label><br>
+            <input id="firstname" name="firstname" type="text" placeholder="First Name"><br><br>
+            <label class="">MIDDLE NAME</label><br>
+            <input id="middlename" name="middlename" type="text" placeholder="Middle Name"><br><br>
+            <label class="">* LAST NAME</label><br>
+            <input id="lastname" name="lastname" type="text" placeholder="Last Name"><br><br>
+            
+            
+            <label class="">* USERNAME</label><br>
+            <input id="username" name="username" type="text" placeholder="Username"><br><br>
+            <label class="">* PASSWORD</label><br>
+            <input id="password" name="password" type="password" placeholder="Password"><br><br>
+ 
+            <label class="">* STREET ADDRESS</label><br>
+            <input id="address" name="address" type="text" placeholder="Address"><br><br>     
+            <label class="">APARTMENT</label><br>
+            <input id="apartment" name="apartment" type="text" placeholder="Apartment, Unit"><br><br>           
+            <label class="">* CITY</label><br>
+            <input id="city" name="city" type="text" placeholder="City"><br><br>    
+            <label class="">* STATE OR PROVINCE</label><br>
+            <input id="state_province" name="state_province" type="text" placeholder="State or Province"><br><br>          
+            <label class="">* ZIP CODE</label><br>
+            <input id="zip_code" name="zip_code" type="text" placeholder="ZIP Code"><br><br>            
+            <label class="">* COUNTRY</label><br>
+            <input id="country" name="country" type="text" placeholder="Country"><br><br>
+
+           <label class="">* PHONE NUMBER</label><br>
+            <input id="phone" name="phone" type="text" placeholder="Phone"><br><br>
+
+            <label class="">* EMAIL</label><br>
+            <input id="email" name="email" type="email" placeholder="Email"><br>
+            <input id="send-otp-submit" type="submit" value="SEND / RESEND EMAIL FOR OTP">
+            <label ><span id="notification-email"></span></label><br><br>
+
+            <label class="">* OTP EMAIL VERIFICATION</label><br>
+            <input id="otpcode" name="otpcode" type="text" placeholder="OTP Code"><br>
+            <input id="verify-otp-submit" type="submit" value="VERIFY">
+            <label ><span id="notification-otp"></span></label><br><br>
+     
+            
+        </div>
+
+        <input id="registration-submit" type="submit" value="CREATE AN ACCOUNT">
+        <label ><span id="notification-create-account"></span></label><br><br>
+      </div>
+
+    <!-- ######################################################## -->
+
+    <!-- Footer -->
+    <footer class="copyright-footer">
+      <p>&copy; 2023 Krisada Sinamkam. All rights reserved.</p>
+    </footer> 
+
+  </div>
+
+  <script src="static/js/register.js"></script>
+
+    
+</body>
+</html>
