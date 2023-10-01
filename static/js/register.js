@@ -1,5 +1,6 @@
-let OTP_EMAIL_VERIFICATTION = false;
+let OTP_EMAIL_VERIFIED = false;
 let IS_SENDING_OTP = false;
+let IS_SENT = false;
 let HASH_OTP_CODE = "";
 
 // Ensure the DOM is fully loaded before executing JavaScript
@@ -12,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const EMAIL = (document.getElementById("email").value).toLowerCase();
 
         if(EMAIL != ""){
-            if(OTP_EMAIL_VERIFICATTION == false){
+            if(OTP_EMAIL_VERIFIED == false){
 
+                IS_SENT = true;
                 IS_SENDING_OTP = true;
 
                 document.querySelector("#notification-email").textContent = `OTP is being sent to ${EMAIL}, please wait`;
@@ -27,13 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     if(response != "EXISTING EMAIL"){
 
                         HASH_OTP_CODE = response;
+                        
+                        IS_SENDING_OTP = false;
 
                         document.querySelector("#notification-email").textContent = `OTP sent successfully to ${EMAIL}`;
                     } else{
                         document.querySelector("#notification-email").innerHTML = `<span style="color: red;">This Email is already exist</span>`;
                     }
-
-                    IS_SENDING_OTP = false;
                 });
     
             } else{
@@ -51,42 +53,47 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("verify-otp-submit").addEventListener("click", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        if(IS_SENDING_OTP == false){
+        if(IS_SENT == true){
 
-            if(OTP_EMAIL_VERIFICATTION == false){
-            
-                const OTP_USER = document.getElementById("otpcode").value;
-    
-                if(OTP_USER != ""){
-    
-                    const OTPs = {
-                        otp_user: OTP_USER,
-                        hash_otp_code: HASH_OTP_CODE
-                    };
+            if(IS_SENDING_OTP == false){
+
+                if(OTP_EMAIL_VERIFIED == false){
+                
+                    const OTP_USER = document.getElementById("otpcode").value;
         
-                    verifyOTP(OTPs, function(response) {
-                        
-                        if(response == "True"){
-                            OTP_EMAIL_VERIFICATTION = true;
-                            document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
-                        } else{
-                            document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">Incorrect OTP, Please Try Again</span>`;
-                        }
-    
-    
-                    });
-    
+                    if(OTP_USER != ""){
+        
+                        const OTPs = {
+                            otp_user: OTP_USER,
+                            hash_otp_code: HASH_OTP_CODE
+                        };
+            
+                        verifyOTP(OTPs, function(response) {
+                            
+                            if(response == "True"){
+                                OTP_EMAIL_VERIFIED = true;
+                                document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
+                            } else{
+                                document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">Incorrect OTP, Please Try Again</span>`;
+                            }
+        
+        
+                        });
+        
+            
+                    } else{
+                        document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP Cannot Be Empty</span>`;
+                    }
         
                 } else{
-                    document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP Cannot Be Empty</span>`;
+                    document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
                 }
     
             } else{
-                document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
+                document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP is being sent, pleasde wait</span>`;
             }
-
         } else{
-            document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP is being sent, pleasde wait</span>`;
+            document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">Please Click Send OTP</span>`;
         }
 
         
@@ -189,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if(PASSWORD == RE_PASSWORD){
 
-                if(OTP_EMAIL_VERIFICATTION == true){
+                if(OTP_EMAIL_VERIFIED == true){
             
                     const credential = {
                         username: USERNAME,
