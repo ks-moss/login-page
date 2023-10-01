@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, jsonify
-from login import *
-from register import *
-from otp_login import *
-from verified_profile import *
+from flask import Flask, render_template, request
+from py.login import *
+from py.register import *
+from py.otp_login import *
+from py.verified_profile import *
 
 app = Flask(__name__)
 

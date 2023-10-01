@@ -1,0 +1,7 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - cd my_flask_app
+      - python app.py  # Specify the command to run your Flask app
