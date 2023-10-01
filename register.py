@@ -7,9 +7,9 @@ import string
 import bcrypt
 
 
-USER_CREDENTIALS = 'user_credentials.db'
-USER_DATA = 'user_data.db'
-PASSWORD_KEY = 'password_key.db'
+USER_CREDENTIALS = 'database/user_credentials.db'
+USER_DATA = 'database/user_data.db'
+PASSWORD_KEY = 'database/password_key.db'
 
 # Function to generate a unique user ID
 def generate_unique_user_id(cursor_register):

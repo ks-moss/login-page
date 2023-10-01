@@ -1,6 +1,6 @@
 import sqlite3
 
-USER_DATA = 'user_data.db'
+USER_DATA = 'database/user_data.db'
 
 def get_user_fullname_profile(user_id):
     try:

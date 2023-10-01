@@ -2,9 +2,9 @@ from cryptography.fernet import Fernet
 import sqlite3
 import re
 
-USER_CREDENTIALS = 'user_credentials.db'
-USER_DATA = 'user_data.db'
-PASSWORD_KEY = 'password_key.db'
+USER_CREDENTIALS = 'database/user_credentials.db'
+USER_DATA = 'database/user_data.db'
+PASSWORD_KEY = 'database/password_key.db'
 
 def is_valid_email(email):
     # Define a regular expression pattern for a basic email validation
