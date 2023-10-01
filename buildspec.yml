@@ -3,5 +3,15 @@ version: 0.2
 phases:
   build:
     commands:
-      - cd my_flask_app
-      - python app.py  # Specify the command to run your Flask app
+      - cd login-page  # Navigate to your Flask app directory
+      - pip install -r requirements.txt  # Install your app's dependencies
+      - python app.py  # Run your Flask app
+
+artifacts:
+  baseDirectory: login-page  # Set the base directory to your app's directory
+  files:
+    - '**/*'
+
+cache:
+  paths:
+    - ~/.cache/pip
