@@ -1,4 +1,5 @@
 let OTP_EMAIL_VERIFICATTION = false;
+let IS_SENDING_OTP = false;
 let HASH_OTP_CODE = "";
 
 // Ensure the DOM is fully loaded before executing JavaScript
@@ -13,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if(EMAIL != ""){
             if(OTP_EMAIL_VERIFICATTION == false){
 
+                IS_SENDING_OTP = true;
+
                 document.querySelector("#notification-email").textContent = `OTP is being sent to ${EMAIL}, please wait`;
     
                 const email_OTP = {
@@ -22,12 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 sendEmailOTP(email_OTP, function(response) {
     
                     if(response != "EXISTING EMAIL"){
+
                         HASH_OTP_CODE = response;
+
                         document.querySelector("#notification-email").textContent = `OTP sent successfully to ${EMAIL}`;
                     } else{
                         document.querySelector("#notification-email").innerHTML = `<span style="color: red;">This Email is already exist</span>`;
                     }
-    
+
+                    IS_SENDING_OTP = false;
                 });
     
             } else{
@@ -45,37 +51,45 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("verify-otp-submit").addEventListener("click", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        if(OTP_EMAIL_VERIFICATTION == false){
+        if(IS_SENDING_OTP == false){
+
+            if(OTP_EMAIL_VERIFICATTION == false){
             
-            const OTP_USER = document.getElementById("otpcode").value;
-
-            if(OTP_USER != ""){
-
-                const OTPs = {
-                    otp_user: OTP_USER,
-                    hash_otp_code: HASH_OTP_CODE
-                };
+                const OTP_USER = document.getElementById("otpcode").value;
     
-                verifyOTP(OTPs, function(response) {
-                    
-                    if(response == "True"){
-                        OTP_EMAIL_VERIFICATTION = true;
-                        document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
-                    } else{
-                        document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">Incorrect OTP, Please Try Again</span>`;
-                    }
-
-
-                });
-
+                if(OTP_USER != ""){
+    
+                    const OTPs = {
+                        otp_user: OTP_USER,
+                        hash_otp_code: HASH_OTP_CODE
+                    };
+        
+                    verifyOTP(OTPs, function(response) {
+                        
+                        if(response == "True"){
+                            OTP_EMAIL_VERIFICATTION = true;
+                            document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
+                        } else{
+                            document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">Incorrect OTP, Please Try Again</span>`;
+                        }
+    
+    
+                    });
+    
+        
+                } else{
+                    document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP Cannot Be Empty</span>`;
+                }
     
             } else{
-                document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP Cannot Be Empty</span>`;
+                document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
             }
 
         } else{
-            document.querySelector("#notification-otp").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
+            document.querySelector("#notification-otp").innerHTML = `<span style="color: red;">OTP is being sent, pleasde wait</span>`;
         }
+
+        
                 
         
     });
@@ -93,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const USERNAME = (document.getElementById("username").value).toLowerCase();
         const PASSWORD = document.getElementById("password").value;
+        const RE_PASSWORD = document.getElementById("verify-password").value;
 
         const ADDRESS = document.getElementById("address").value;
         const APARTMENT = document.getElementById("apartment").value;
@@ -132,6 +147,10 @@ document.addEventListener("DOMContentLoaded", function () {
             found_empty = true;
             notification_message = notification_message + "Password Cannot Be Empty." + "<br>"
         }
+        if(RE_PASSWORD.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "Verify Password Cannot Be Empty." + "<br>"
+        }
         if(ADDRESS.length == 0){
             found_empty = true;
             notification_message = notification_message + "Address Cannot Be Empty." + "<br>"
@@ -168,34 +187,38 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         else {
 
-            if(OTP_EMAIL_VERIFICATTION == true){
+            if(PASSWORD == RE_PASSWORD){
+
+                if(OTP_EMAIL_VERIFICATTION == true){
             
-                const credential = {
-                    username: USERNAME,
-                    password: PASSWORD,
-                    name: NAME,
-                    address: FULL_ADDRESS,
-                    phone: PHONE,
-                    email: EMAIL
-                };
-    
-                storeRegisterationCredentials(credential, function(response) {
-    
-                    if(response == "PASS"){
-                        openCreatedAccountPage();
-                    } else{
-                        document.querySelector("#notification-create-account").textContent = `${response}, please try again`;
-                    }
-                    
-                });
-    
-            } else{
-                document.querySelector("#notification-create-account").textContent = `Please Verify OTP`;
+                    const credential = {
+                        username: USERNAME,
+                        password: PASSWORD,
+                        name: NAME,
+                        address: FULL_ADDRESS,
+                        phone: PHONE,
+                        email: EMAIL
+                    };
+        
+                    storeRegisterationCredentials(credential, function(response) {
+        
+                        if(response == "PASS"){
+                            openCreatedAccountPage();
+                        } else{
+                            document.querySelector("#notification-create-account").textContent = `${response}, please try again`;
+                        }
+                        
+                    });
+        
+                } else{
+                    document.querySelector("#notification-create-account").textContent = `Please Verify OTP`;
+                }
+            }
+            else{
+                document.querySelector("#notification-create-account").innerHTML = `Passwords Are Not the Same.`;
             }
 
         }
-
-        
         
     });
 
