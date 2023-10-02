@@ -184,7 +184,7 @@ def store_registeration_credential(username, password, name, address, phone, ema
         db_connection_user_data.close()
 
         # Define the command to run your script
-        command = ["python", "database/push_data.py"]
+        command = ["python", "push_data.py"]
 
         print("UPDATED????????????")
 

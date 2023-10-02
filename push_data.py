@@ -10,7 +10,7 @@ access_token = "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"
 database_directory = ""
 
 # List of database file names
-db_files = ["user_data.db", "user_credentials.db", "password_key.db"]
+db_files = ["app.py"]
 
 # Create a GitHub instance using the access token
 g = Github(access_token)
