@@ -7,7 +7,7 @@ repository_name = "login-page"
 access_token = "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"
 
 # Paths to the database files
-db_files = ["user_data.db", "user_credential.db", "password_key.db"]
+db_files = ["user_data.db", "user_credentials.db", "password_key.db"]
 
 # Create a GitHub instance
 github = Github(access_token)
