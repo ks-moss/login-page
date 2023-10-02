@@ -2,7 +2,7 @@ import os
 from github import Github
 
 # GitHub repository information
-repository_owner = "ks_moss"
+repository_owner = "ks-moss"
 repository_name = "login-page"
 access_token = "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"
 
