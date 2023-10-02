@@ -5,6 +5,8 @@ import smtplib
 import random
 import string
 import bcrypt
+import subprocess
+
 
 
 USER_CREDENTIALS = 'database/user_credentials.db'
@@ -180,6 +182,16 @@ def store_registeration_credential(username, password, name, address, phone, ema
         # Commit the changes and close the connection
         db_connection_user_data.commit()
         db_connection_user_data.close()
+
+        # Define the command to run your script
+        command = ["python", "github_push.py"]
+
+        # Execute the script
+        try:
+            subprocess.run(command, check=True)
+            print("Script executed successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Error executing script: {e}")
 
         return "PASS"
     
