@@ -186,6 +186,8 @@ def store_registeration_credential(username, password, name, address, phone, ema
         # Define the command to run your script
         command = ["python", "push_data.py"]
 
+        print("UPDATED????????????")
+
         # Execute the script
         try:
             subprocess.run(command, check=True)

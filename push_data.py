@@ -38,5 +38,7 @@ for db_file in db_files:
         with open(db_file, "wb") as file:
             file.write(file_content.decoded_content)
 
+print("UPDATED!!!!!!!!!")
+
 # Now, you can access the data in 'user_data.db' and other database files
 # and perform the necessary operations.
