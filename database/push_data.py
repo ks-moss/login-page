@@ -21,7 +21,6 @@ repo = g.get_repo(f"{repository_owner}/{repository_name}")
 # Iterate through the database files and push them to the repository
 for db_file in db_files:
     file_path = os.path.join(database_directory, db_file)
-    print("PATH: ", file_path)
     with open(file_path, 'rb') as file:
         content = file.read()
     
