@@ -7,7 +7,7 @@ repository_name = "login-page"
 access_token = "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"
 
 # Directory where the database files are located
-database_directory = "database/"
+database_directory = ""
 
 # List of database file names
 db_files = ["user_data.db", "user_credentials.db", "password_key.db"]
