@@ -4,7 +4,7 @@ from github import Github
 # GitHub repository information
 repository_owner = "ks_moss"
 repository_name = "login-page"
-access_token = "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"
+access_token = "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"
 
 # Directory where the database files are located
 database_directory = "database/"
@@ -20,6 +20,8 @@ repo = github.get_user(repository_owner).get_repo(repository_name)
 
 # Commit and push the database files
 branch = repo.get_branch("main")  # Use the appropriate branch name
+
+print("HERE!!!!!!!!!")
 
 for db_file in db_files:
     # Construct the full path to the database file
