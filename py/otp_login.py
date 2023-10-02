@@ -4,7 +4,7 @@ import random
 import string
 import bcrypt
 
-USER_DATA = 'database/user_data.db'
+USER_DATA = 'user_data.db'
 
 
 def get_email_OTP(user_id):
