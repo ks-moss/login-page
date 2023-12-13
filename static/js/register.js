@@ -126,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const PHONE = document.getElementById("phone").value;
         const EMAIL = (document.getElementById("email").value).toLowerCase();
 
+        const OTP_CODE = document.getElementById("otpcode").value;
+
 
         const namePart = MIDDLENAME ? MIDDLENAME + " " : "";
         const NAME = `${FIRSTNAME} ${namePart} ${LASTNAME}`;
@@ -186,8 +188,10 @@ document.addEventListener("DOMContentLoaded", function () {
             found_empty = true;
             notification_message = notification_message + "Email Cannot Be Empty." + "<br>"
         }
-
-
+        if(OTP_CODE.length == 0){
+            found_empty = true;
+            notification_message = notification_message + "OTP Passcode Cannot Be Empty." + "<br>"
+        }
 
         if(found_empty == true){
             document.querySelector("#notification-create-account").innerHTML = `${notification_message}`;
