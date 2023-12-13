@@ -20,7 +20,7 @@ body {
     min-height: 100%;
 
     position: relative;
-    border: 2px solid rgb(255, 0, 0);
+    /* border: 2px solid rgb(255, 0, 0); */
     padding-bottom: 5rem;
 }
 
@@ -28,7 +28,7 @@ body {
     min-height: 100%;
 
     position: relative;
-    border: 2px solid rgb(0, 255, 8);
+    /* border: 2px solid rgb(0, 255, 8); */
     margin: 5rem;
 
     display: flex;
@@ -39,7 +39,7 @@ body {
 }
 
 .otp {
-    border: 2px solid rgb(255, 0, 255);
+    /* border: 2px solid rgb(255, 0, 255); */
 
     width: 75%;
     display: flex;
@@ -50,7 +50,7 @@ body {
 }
 
 .otp-login-label {
-    border: 2px solid rgb(242, 255, 0);
+    /* border: 2px solid rgb(242, 255, 0); */
     width: 85%;
 }
 

@@ -20,7 +20,7 @@ body {
     min-height: 100%;
 
     position: relative;
-    border: 2px solid rgb(255, 0, 0);
+    /* border: 2px solid rgb(255, 0, 0); */
     padding-bottom: 5rem;
 }
 
@@ -28,7 +28,7 @@ body {
 .account_created {
     min-height: 100%;
 
-    border: 2px solid rgb(0, 255, 8);
+    /* border: 2px solid rgb(0, 255, 8); */
     margin: 5rem;
 
     display: flex;
