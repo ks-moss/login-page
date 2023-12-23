@@ -13,34 +13,42 @@ document.addEventListener("DOMContentLoaded", function () {
         const EMAIL = (document.getElementById("email").value).toLowerCase();
 
         if(EMAIL != ""){
-            if(OTP_EMAIL_VERIFIED == false){
 
-                IS_SENT = true;
-                IS_SENDING_OTP = true;
+            if(validateEmail(EMAIL)){
 
-                document.querySelector("#notification-email").textContent = `OTP is being sent to ${EMAIL}, please wait`;
-    
-                const email_OTP = {
-                    email: EMAIL
-                };
-    
-                sendEmailOTP(email_OTP, function(response) {
-    
-                    if(response != "EXISTING EMAIL"){
+                if(OTP_EMAIL_VERIFIED == false){
 
-                        HASH_OTP_CODE = response;
-                        
-                        IS_SENDING_OTP = false;
-
-                        document.querySelector("#notification-email").textContent = `OTP sent successfully to ${EMAIL}`;
-                    } else{
-                        document.querySelector("#notification-email").innerHTML = `<span style="color: red;">This Email is already exist</span>`;
-                    }
-                });
+                    IS_SENT = true;
+                    IS_SENDING_OTP = true;
     
-            } else{
-                document.querySelector("#notification-email").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
+                    document.querySelector("#notification-email").textContent = `OTP is being sent to ${EMAIL}, please wait`;
+        
+                    const email_OTP = {
+                        email: EMAIL
+                    };
+        
+                    sendEmailOTP(email_OTP, function(response) {
+        
+                        if(response != "EXISTING EMAIL"){
+    
+                            HASH_OTP_CODE = response;
+                            
+                            IS_SENDING_OTP = false;
+    
+                            document.querySelector("#notification-email").textContent = `OTP sent successfully to ${EMAIL}`;
+                        } else{
+                            document.querySelector("#notification-email").innerHTML = `<span style="color: red;">This Email is already exist</span>`;
+                        }
+                    });
+        
+                } else{
+                    document.querySelector("#notification-email").innerHTML = `<span style="color: green;">Email Has Been Verified</span>`;
+                }
+
+            } else {
+                document.querySelector("#notification-email").innerHTML = `<span style="color: red;">Invalid Email!</span>`;
             }
+            
         } else {
             document.querySelector("#notification-email").innerHTML = `<span style="color: red;">Email Cannot Be Empty</span>`
         }
