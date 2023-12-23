@@ -138,62 +138,66 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         let notification_message = "";
-        let found_empty = false;
+        let found_error = false;
 
         if(FIRSTNAME.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "First Name Cannot Be Empty." + "<br>"
         }
         if(LASTNAME.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Last Name Cannot Be Empty." + "<br>"
         }
         if(USERNAME.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Username Cannot Be Empty." + "<br>"
         }
         if(PASSWORD.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Password Cannot Be Empty." + "<br>"
         }
         if(RE_PASSWORD.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Verify Password Cannot Be Empty." + "<br>"
         }
         if(ADDRESS.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Address Cannot Be Empty." + "<br>"
         }
         if(CITY.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "City Cannot Be Empty." + "<br>"
         }
         if(STATE_PROVINCE.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "State Cannot Be Empty." + "<br>"
         }
         if(ZIP_CODE.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Zip Code Cannot Be Empty." + "<br>"
         }
         if(COUNTRY.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Country Cannot Be Empty." + "<br>"
         }
         if(PHONE.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Phone Number Cannot Be Empty." + "<br>"
         }
         if(EMAIL.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "Email Cannot Be Empty." + "<br>"
         }
+        if(validateEmail(EMAIL) == false){
+            found_error = true;
+            notification_message = notification_message + "Invalid Email." + "<br>"
+        }
         if(OTP_CODE.length == 0){
-            found_empty = true;
+            found_error = true;
             notification_message = notification_message + "OTP Passcode Cannot Be Empty." + "<br>"
         }
 
-        if(found_empty == true){
+        if(found_error == true){
             document.querySelector("#notification-create-account").innerHTML = `${notification_message}`;
         }
         else {
@@ -331,4 +335,9 @@ function openCreatedAccountPage() {
     // }
 
    
+}
+
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
 }
